@@ -1,0 +1,10 @@
+{
+  "CSV_PATH": "test.csv",
+  "DATABASE_URL": "postgresql://stock_prediction:stock_prediction@localhost:5432/stock_prediction",
+  "DATABASE_URL_SQLITE": "sqlite://stock_prediction:stock_prediction@localhost:5432/stock_prediction",
+  "TARGET_TABLE": "test",
+  "MAPPING": {
+    "name": "Zaphod Beeblebrox",
+    "species": "Betelgeusian"
+  }
+}

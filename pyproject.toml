@@ -1,0 +1,29 @@
+name = "data-importer"
+version = "0.1.0"
+description = "Supports importing csv files ot a postgres database"
+readme = "README.md"
+authors = [{ name = "Ernan", email = "ernan@outlook.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+keywords = [
+    "FastAPI",
+    "Prisma",
+    "REST API",
+    "Postgres",
+]
+dependencies = ["pandas", "pytest", "python-dotenv", "psycopg2"]
+requires-python = ">=3.1"
+[project.urls]
+Homepage = "https://github.com/ernan/data-importer"
+[project.scripts]
+application = "data_importer"
+
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
