@@ -1,3 +1,4 @@
+"""Module providing a function printing python version."""
 import json
 import logging.config
 from os import path
@@ -12,14 +13,17 @@ logger = logging.getLogger(__name__)
 
 
 def import_file(config: str) -> dict:
+    """Import a file using the config file and return the result."""
     if path.isfile(config):
-        with open(config) as f:
+        with open(config, encoding="utf-8") as f:
             return process(json.load(f))
     else:
         return process(json.loads(config))
 
 
 def process(config: dict) -> dict:
+    """Process the config and return the result. 
+       Will handle string json and a file path."""
     logger.info("Processing config: %s", config)
     csv_path = config["CSV_PATH"]
     assert path.isfile(csv_path)
