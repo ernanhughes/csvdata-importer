@@ -1,9 +1,7 @@
 import logging
 import sqlite3
-import pytest
 
 logger = logging.getLogger(__name__)
-
 
 CREATE_SQL = """
     -- projects table
@@ -36,7 +34,7 @@ CREATE_SQL = """
 """
 
 
-@pytest.fixture(scope="session")
+# @pytest.fixture(scope="session")
 def client():
     con = sqlite3.connect('data.db')
     curs = con.cursor()

@@ -1,0 +1,67 @@
+{
+    "DATABASE_URL": "postgresql://stock_prediction:stock_prediction@localhost:5432/stock_prediction",
+    "TARGET_TABLE": "quote",
+    "FILE_PATH": "test.csv",
+    "MAPPING": [
+        {
+            "COLUMN_NAME": "id",
+            "FILE_COLUMN_NAME": "id",
+            "EVAL": "",
+            "REQUIRED": "True"
+        },
+        {
+            "COLUMN_NAME": "name",
+            "FILE_COLUMN_NAME": "name_1",
+            "EVAL": "",
+            "REQUIRED": "True"
+        },
+        {
+            "COLUMN_NAME": "source",
+            "FILE_COLUMN_NAME": "source_1",
+            "EVAL": "",
+            "REQUIRED": "True"
+        },
+        {
+            "COLUMN_NAME": "date",
+            "FILE_COLUMN_NAME": "date",
+            "EVAL": "",
+            "REQUIRED": "True"
+        },
+        {
+            "COLUMN_NAME": "open",
+            "FILE_COLUMN_NAME": "open",
+            "EVAL": "",
+            "REQUIRED": "True"
+        },
+        {
+            "COLUMN_NAME": "high",
+            "FILE_COLUMN_NAME": "high",
+            "EVAL": "",
+            "REQUIRED": "True"
+        },
+        {
+            "COLUMN_NAME": "low",
+            "FILE_COLUMN_NAME": "low",
+            "EVAL": "",
+            "REQUIRED": "True"
+        },
+        {
+            "COLUMN_NAME": "close",
+            "FILE_COLUMN_NAME": "close",
+            "EVAL": "",
+            "REQUIRED": "True"
+        },
+        {
+            "COLUMN_NAME": "adj_close",
+            "FILE_COLUMN_NAME": "adj_close",
+            "EVAL": "",
+            "REQUIRED": "True"
+        },
+        {
+            "COLUMN_NAME": "volume",
+            "FILE_COLUMN_NAME": "volume",
+            "EVAL": "",
+            "REQUIRED": "True"
+        }
+    ]
+}
