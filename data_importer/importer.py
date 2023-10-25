@@ -1,21 +1,17 @@
 """Module providing a way to import data to data tables."""
 import logging.config
-from os import path
 
-import psycopg2
-from sqlalchemy import create_engine
-from .configdict import ConfigDict, load_config
 import pandas as pd
+from sqlalchemy import create_engine
 
-log_file_path = path.join(path.dirname(path.abspath(__file__)), 'logging.conf')
-print(f'log_file_path: {log_file_path}')
-logging.config.fileConfig(log_file_path)
-logger = logging.getLogger(__name__)
+from .mapping import Mapping, load_config, ColumnMappingType
+
+logger = logging.getLogger("data-importer")
 
 
 class Importer:
-    """ Class for importing datat to the database based upon the config file"""
-    config: ConfigDict
+    """ Class for importing data to a database table based upon the mapping file"""
+    config: Mapping
 
     def __init__(self, config: str):
         self.config = load_config(config)
@@ -23,16 +19,20 @@ class Importer:
     def process(self) -> int:
         """Process the config and return the result.
            Will handle string json and a file path."""
-        csv_path = self.config.file_path
-        logger.info("Loading csv: %s", csv_path)
-        df = pd.read_csv(csv_path)
-        engine = create_engine(
-            f"postgresql+psycopg2://{self.config.username}:{self.config.password}@{self.config.hostname}:{self.config.port}/{self.config.database}")
+        file_path = self.config.file_path
+        logger.info("Loading file: %s", file_path)
+        df = pd.read_csv(file_path)
+        engine = create_engine(self.config.get_engine_connection_string())
         for col in self.config.column_mappings:
             if col.file_column_name in df.columns:
                 if col.file_column_name != col.column_name:
-                    print(f"Renaming row {col.file_column_name} to column Name: {col.column_name}, ")
+                    logger.info("Renaming column %s to column Name: %s.",
+                                col.file_column_name, col.column_name)
                     df = df.rename(columns={col.file_column_name: col.column_name})
-        sql_insert = df.to_sql(self.config.target_table, engine, if_exists='replace', index=False)
+            if col.mapping_type == ColumnMappingType.CONSTANT:
+                logger.info("Assigning column: %s to constant value %s as it is configured to be constant",
+                            col.column_name, col.constant_value)
+                data = {col.column_name: col.constant_value}
+                df = df.assign(**data)
+        sql_insert = df.to_sql(self.config.target_table, engine, if_exists=self.config.if_exists, index=False)
         return sql_insert
-

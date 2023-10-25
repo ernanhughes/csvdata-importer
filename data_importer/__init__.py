@@ -1,2 +1,2 @@
-from .configdict import *
 from .importer import *
+from .mapping import *

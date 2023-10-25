@@ -1,67 +1,138 @@
 {
     "DATABASE_URL": "postgresql://stock_prediction:stock_prediction@localhost:5432/stock_prediction",
     "TARGET_TABLE": "quote",
-    "FILE_PATH": "test.csv",
-    "MAPPING": [
-        {
-            "COLUMN_NAME": "id",
-            "FILE_COLUMN_NAME": "id",
-            "eval": "",
-            "REQUIRED": "True"
-        },
+    "IF_EXISTS": "append",
+    "COLUMN_MAPPING": [
         {
             "COLUMN_NAME": "name",
-            "FILE_COLUMN_NAME": "name_1",
-            "eval": "",
-            "REQUIRED": "True"
+            "FILE_COLUMN_NAME": "name",
+            "EVAL": "",
+            "MAPPING_TYPE": "DIRECT",
+            "REQUIRED": "True",
+            "CONSTANT_VALUE": "",
+            "type": "TEXT",
+            "nullable": true,
+            "autoincrement": false,
+            "comment": null,
+            "default": null
         },
         {
             "COLUMN_NAME": "source",
-            "FILE_COLUMN_NAME": "source_1",
-            "eval": "",
-            "REQUIRED": "True"
+            "FILE_COLUMN_NAME": "source",
+            "EVAL": "",
+            "MAPPING_TYPE": "DIRECT",
+            "REQUIRED": "True",
+            "CONSTANT_VALUE": "",
+            "type": "TEXT",
+            "nullable": true,
+            "autoincrement": false,
+            "comment": null,
+            "default": null
         },
         {
             "COLUMN_NAME": "date",
             "FILE_COLUMN_NAME": "date",
-            "eval": "",
-            "REQUIRED": "True"
+            "EVAL": "",
+            "MAPPING_TYPE": "DIRECT",
+            "REQUIRED": "True",
+            "CONSTANT_VALUE": "",
+            "type": "TEXT",
+            "nullable": true,
+            "autoincrement": false,
+            "comment": null,
+            "default": null
         },
         {
             "COLUMN_NAME": "open",
             "FILE_COLUMN_NAME": "open",
-            "eval": "",
-            "REQUIRED": "True"
+            "EVAL": "",
+            "MAPPING_TYPE": "DIRECT",
+            "REQUIRED": "True",
+            "CONSTANT_VALUE": "",
+            "type": "DOUBLE PRECISION",
+            "nullable": true,
+            "autoincrement": false,
+            "comment": null,
+            "default": null
         },
         {
             "COLUMN_NAME": "high",
             "FILE_COLUMN_NAME": "high",
-            "eval": "",
-            "REQUIRED": "True"
+            "EVAL": "",
+            "MAPPING_TYPE": "DIRECT",
+            "REQUIRED": "True",
+            "CONSTANT_VALUE": "",
+            "type": "DOUBLE PRECISION",
+            "nullable": true,
+            "autoincrement": false,
+            "comment": null,
+            "default": null
         },
         {
             "COLUMN_NAME": "low",
             "FILE_COLUMN_NAME": "low",
-            "eval": "",
-            "REQUIRED": "True"
+            "EVAL": "",
+            "MAPPING_TYPE": "DIRECT",
+            "REQUIRED": "True",
+            "CONSTANT_VALUE": "",
+            "type": "DOUBLE PRECISION",
+            "nullable": true,
+            "autoincrement": false,
+            "comment": null,
+            "default": null
         },
         {
             "COLUMN_NAME": "close",
             "FILE_COLUMN_NAME": "close",
-            "eval": "",
-            "REQUIRED": "True"
+            "EVAL": "",
+            "MAPPING_TYPE": "DIRECT",
+            "REQUIRED": "True",
+            "CONSTANT_VALUE": "",
+            "type": "DOUBLE PRECISION",
+            "nullable": true,
+            "autoincrement": false,
+            "comment": null,
+            "default": null
         },
         {
             "COLUMN_NAME": "adj_close",
             "FILE_COLUMN_NAME": "adj_close",
-            "eval": "",
-            "REQUIRED": "True"
+            "EVAL": "",
+            "MAPPING_TYPE": "DIRECT",
+            "REQUIRED": "True",
+            "CONSTANT_VALUE": "",
+            "type": "DOUBLE PRECISION",
+            "nullable": true,
+            "autoincrement": false,
+            "comment": null,
+            "default": null
         },
         {
             "COLUMN_NAME": "volume",
             "FILE_COLUMN_NAME": "volume",
-            "eval": "",
-            "REQUIRED": "True"
+            "EVAL": "",
+            "MAPPING_TYPE": "DIRECT",
+            "REQUIRED": "True",
+            "CONSTANT_VALUE": "",
+            "type": "BIGINT",
+            "nullable": true,
+            "autoincrement": false,
+            "comment": null,
+            "default": null
+        },
+        {
+            "COLUMN_NAME": "volume_zzzz",
+            "FILE_COLUMN_NAME": "volume_zzzz",
+            "EVAL": "",
+            "MAPPING_TYPE": "DIRECT",
+            "REQUIRED": "True",
+            "CONSTANT_VALUE": "",
+            "type": "TEXT",
+            "nullable": true,
+            "autoincrement": false,
+            "comment": null,
+            "default": null
         }
-    ]
+    ],
+    "FILE_PATH": "test.csv"
 }
