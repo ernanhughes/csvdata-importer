@@ -1,5 +1,5 @@
 data-importer
-==========
+=============
 
 Documentation
 -------------
@@ -16,14 +16,19 @@ Installation
 
 
 Data Importer
------------
+-------------
 
 A configurable file to database table importer. 
-It can be used to import data from a csv file to a postgres or sqlite database. 
+It can be used to import data from a csv file to a postgres
+or sqlite database.
+
+You build a mapping json file and then use that to create or update tables
+on the database.
+
 
 
 data-importer
-----------
+-------------
 
 Based on CheckedDict, a data-importer is a persistent, unique dictionary. It is
 saved under the config folder determined by the OS and it is updated with each
@@ -32,41 +37,78 @@ modification. It is useful for implementing configuration of a module / library
 configure global settings which must be persisted between sessions (similar to
 the settings in an application)
 
-Example
+Mapping file Example
 -------
 
-.. code-block:: python
+.. code-block:: json
 
-   config = data-importer("myproj.subproj")
-   config.addKey("keyA", 10, doc="documentaion of keyA")
-   config.addKey("keyB", 0.5, range=(0, 1))
-   config.addKey("keyC", "blue", choices=("blue", "red"),
-                 doc="documentation of keyC")
-   config.load()
+    {
+        "DATABASE_URL": "postgresql://user:pwd@host:5432/db",
+        "TARGET_TABLE": "quote",
+        "IF_EXISTS": "append",
+        "COLUMN_MAPPING": [
+        ]
+    }
 
-Alternatively, a data-importer can be created all at once:
 
-.. code-block:: python
-                
-   config = data-importer("myapp",
-       default = {
-           'font-size': 10.0,
-           'font-family': "Monospace",
-           'port' : 9100,
-       },
-       validator = {
-           'font-size::range' : (8, 24),
-           'port::range' : (9000, 65000),
-           'font-family::choices' : {'Roboto', 'Monospace'},
-       },
-       docs = {
-           'port': 'The port number to listen to',
-           'font-size': 'The size of the font, in pixels'
-       }
-   )
+Importing data using the mapping file
+-------------------------------------
 
-This will create the dictionary and load any persisted version. Any saved
-modifications will override the default values. Whenever the user changes any
-value (via ``config[key] = newvalue``) the dictionary will be saved.
+The overall mapping configuration
 
-In all other respects a data-importer behaves like a normal dictionary.
+.. list-table:: Columns and their function inf the mapping file
+   :widths: 20 30 50
+   :header-rows: 1
+
+   * - Column Name
+     - Example
+     - Description
+   * - DATABASE_URL
+     - postgresql://user:pass@host:5432/db
+     - The database we are connecting to
+   * - TARGET_TABLE
+     - quote
+     - The table in that database we are updating or creating
+   * - FILE_PATH
+     - /test.csv
+     - The file we are importing
+   * - IF_EXISTS
+     - append
+     - The action taken on the table if it is non empty. Can be one of fail, append.
+   * - COLUMN_MAPPING
+     - array of columns see next table
+     - The columns and how they are mapped
+
+The column mappings
+
+.. list-table:: Columns mappings
+   :widths: 20 30 50
+   :header-rows: 1
+
+   * - Column Name
+     - Example
+     - Description
+   * - COLUMN_NAME
+     - quote_value
+     - The table column we are updating
+   * - FILE_COLUMN_NAME
+     - quote
+     - The column in the csv we are reading from
+   * - MAPPING_TYPE
+     - DIRECT
+     - The type of mapping we are doing. See below
+   * - CONSTANT_VALUE
+     - File Import
+     - For use when we are mapping a constant to the table.
+
+
+Different types of mappings
+---------------------------
+
+DIRECT
+In this case we read the value form the file and write it directly to the table row column.
+
+CONSTANT
+In this case it is a constant value and we are just updating the table with the value we find in the CONSTANT_VALUE mapping.
+
+

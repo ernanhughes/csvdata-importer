@@ -5,12 +5,12 @@
   "FILE_PATH": "test.csv",
   "COLUMN_MAPPING": [
     {
-      "COLUMN_NAME": "volume_zzzz",
-      "FILE_COLUMN_NAME": "",
+      "COLUMN_NAME": "source",
+      "FILE_COLUMN_NAME": "source",
       "EVAL": "",
       "REQUIRED": "True",
       "MAPPING_TYPE": "CONSTANT",
-      "CONSTANT_VALUE": "yyyy"
+      "CONSTANT_VALUE": "test-data"
     },
     {
       "COLUMN_NAME": "id",
@@ -21,12 +21,6 @@
     {
       "COLUMN_NAME": "name",
       "FILE_COLUMN_NAME": "name_1",
-      "EVAL": "",
-      "REQUIRED": "True"
-    },
-    {
-      "COLUMN_NAME": "source",
-      "FILE_COLUMN_NAME": "source_1",
       "EVAL": "",
       "REQUIRED": "True"
     },

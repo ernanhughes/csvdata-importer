@@ -123,7 +123,8 @@ class Mapping(Dict[str, Any]):
                         url.username, url.hostname, url.port, database)
             return f'postgresql+psycopg2://{url.username}:{url.password}@{url.hostname}:{url.port}/{database}'
         else:
-            return ""
+            logger.info("Engine connection string: %s",self[DATABASE_URL])
+            return self[DATABASE_URL]
 
     @staticmethod
     def generate_mapping(dsn: str, table_name: str) -> str:
