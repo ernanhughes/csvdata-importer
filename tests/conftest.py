@@ -1,5 +1,4 @@
 import logging
-import sqlite3
 import os
 
 import pytest
@@ -25,17 +24,16 @@ CREATE_SQL = """
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 
-# @pytest.fixture(scope="session")
 @pytest.fixture
-def client():
-    db_path = os.path.join(__location__, "test.db")
-    con = sqlite3.connect(db_path)
-    curs = con.cursor()
-    curs.execute(CREATE_SQL)
-    con.commit()
-    curs.execute("SELECT * FROM quote;")
-    result = curs.fetchall()
-    print(result)
+def db_url(db_path):
+    path = f'sqlite:///{db_path}'
+    return path
+
+
+@pytest.fixture
+def db_path():
+    return os.path.join(__location__, "test.db")
+
 
 @pytest.fixture
 def test_mapping():

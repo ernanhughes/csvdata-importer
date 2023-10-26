@@ -31,7 +31,7 @@ class Importer:
                     logger.info("Renaming column %s to column Name: %s.",
                                 col.file_column_name, col.column_name)
                     df = df.rename(columns={col.file_column_name: col.column_name})
-            if col.mapping_type == "CONSTANT":
+            if col.mapping_type == ColumnMappingType.CONSTANT.value:
                 logger.info("Assigning column: %s to constant value %s as it is configured to be constant",
                             col.column_name, col.constant_value)
                 data = {col.column_name: col.constant_value}

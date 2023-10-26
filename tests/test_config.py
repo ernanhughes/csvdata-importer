@@ -1,10 +1,7 @@
 """Test the mapping functionality. Uses a sqlite database in place of postgres."""
 import json
-import logging
 
 from data_importer import Mapping, load_config
-
-logger = logging.getLogger("data-importer")
 
 
 def test_load_config_file(test_mapping) -> None:

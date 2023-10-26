@@ -14,7 +14,6 @@ Installation
     $ pip install data-importer
 
 
-
 Data Importer
 -------------
 
@@ -25,17 +24,6 @@ or sqlite database.
 You build a mapping json file and then use that to create or update tables
 on the database.
 
-
-
-data-importer
--------------
-
-Based on CheckedDict, a data-importer is a persistent, unique dictionary. It is
-saved under the config folder determined by the OS and it is updated with each
-modification. It is useful for implementing configuration of a module / library
-/ app, where there is a default/initial state and the user needs to be able to
-configure global settings which must be persisted between sessions (similar to
-the settings in an application)
 
 Mapping file Example
 -------

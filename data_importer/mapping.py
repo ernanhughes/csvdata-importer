@@ -22,23 +22,20 @@ CONSTANT = "CONSTANT"
 EVAL = "EVAL"
 MAPPING_TYPE = "MAPPING_TYPE"
 CONSTANT_VALUE = "CONSTANT_VALUE"
-# The value from the file is transferred directly to the table
-DIRECT = "DIRECT"
 # What action is take if the target table exists
 IF_EXISTS = "IF_EXISTS"
 
 
 class ColumnMappingType(Enum):
-    DIRECT = 1  # When we are mapping directly from one field to another
-    EVALUATED = 2  # When we are performing an evaluation to determine final result
-    CONSTANT = 3  # When we are using a constant for a field value
-
-    @staticmethod
-    def parse(value: str):
-        for enum_member in ColumnMappingType:
-            if enum_member.name == value:
-                return enum_member
-        raise ValueError(f"'{value}' is not a valid value for ColumnMappingType enumeration.")
+    """The database column mapping type.
+        DIRECT: Write the file value directly to the table row/column
+        EVALUATED: Perform an evaluation on the value we read in the file before updating the database.
+                   For example make uppercase etc.
+        CONSTANT: We are writing a constant value the to the target row column.
+    """
+    DIRECT = "DIRECT"
+    EVALUATED = "EVALUATED"
+    CONSTANT = "CONSTANT"
 
 
 class ColumnMapping(Dict[str, Any]):
@@ -64,7 +61,7 @@ class ColumnMapping(Dict[str, Any]):
         # default to the mapped database column name
         self[FILE_COLUMN_NAME] = config.get(FILE_COLUMN_NAME, self[COLUMN_NAME])
         self[REQUIRED] = config.get(REQUIRED, "True")
-        self[MAPPING_TYPE] = config.get(MAPPING_TYPE, DIRECT)
+        self[MAPPING_TYPE] = config.get(MAPPING_TYPE, ColumnMappingType.DIRECT.value)
         self[CONSTANT_VALUE] = config.get(CONSTANT_VALUE, "")
 
     @staticmethod
@@ -73,14 +70,11 @@ class ColumnMapping(Dict[str, Any]):
             COLUMN_NAME: column['name'],
             FILE_COLUMN_NAME: column['name'],
             EVAL: "",
-            MAPPING_TYPE: DIRECT,
+            MAPPING_TYPE: ColumnMappingType.DIRECT.value,
             REQUIRED: "True" if column['nullable'] else "False",
             CONSTANT_VALUE: "",
             "type": str(column['type']),
-            "nullable": column['nullable'],
-            "autoincrement": column['autoincrement'],
-            "comment": column['comment'],
-            "default": column['default']
+            "nullable": column['nullable']
         }
 
 
@@ -123,7 +117,7 @@ class Mapping(Dict[str, Any]):
                         url.username, url.hostname, url.port, database)
             return f'postgresql+psycopg2://{url.username}:{url.password}@{url.hostname}:{url.port}/{database}'
         else:
-            logger.info("Engine connection string: %s",self[DATABASE_URL])
+            logger.info("Engine connection string: %s", self[DATABASE_URL])
             return self[DATABASE_URL]
 
     @staticmethod

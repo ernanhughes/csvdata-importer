@@ -5,9 +5,9 @@ from data_importer import ColumnMappingType
 
 
 def test_mapping_type() -> None:
-    assert ColumnMappingType.parse("DIRECT") == ColumnMappingType.DIRECT
+    assert "DIRECT" == ColumnMappingType.DIRECT.value
 
 
 def test_mapping_type_fail() -> None:
-    with pytest.raises(ValueError):
-        ColumnMappingType.parse("WILL NOT MAP")
+    with pytest.raises(KeyError):
+        return ColumnMappingType["WILL NOT MAP"].value
