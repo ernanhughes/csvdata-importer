@@ -21,6 +21,17 @@ Installation
 How to use data-importer
 ------------------------
 
+.. code-block:: python
+
+    mapping_file_path = "mapping.json"
+    mapping = Mapping(load_mapping(mapping_file_path))
+    inserted_col_count = Importer(str(mapping)).process()
+    print("We inserted %d columns using mapping file %s",
+        inserted_col_count, mapping_file_path)
+
+
+
+
 It can be used to import data from a csv file to a postgres
 or sqlite database.
 

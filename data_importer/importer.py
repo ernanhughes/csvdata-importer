@@ -4,7 +4,7 @@ import logging.config
 import pandas as pd
 from sqlalchemy import create_engine
 
-from .mapping import Mapping, load_config, ColumnMappingType
+from .mapping import Mapping, load_mapping, ColumnMappingType
 
 logger = logging.getLogger("data-importer")
 
@@ -14,7 +14,7 @@ class Importer:
     config: Mapping
 
     def __init__(self, config: str):
-        self.config = load_config(config)
+        self.config = load_mapping(config)
 
     def process(self) -> int:
         """Process the config and return the result.

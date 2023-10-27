@@ -134,7 +134,7 @@ class Mapping(Dict[str, Any]):
         return str(config)
 
 
-def load_config(config: str) -> Mapping:
+def load_mapping(config: str) -> Mapping:
     """Import a file using the config file and return the result."""
     if path.isfile(config):
         logger.info("loading config %s as file", config)
