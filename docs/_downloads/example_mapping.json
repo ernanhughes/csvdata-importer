@@ -1,0 +1,54 @@
+{
+  "DATABASE_URL": "postgresql://data_importer:data_importer@localhost:5432/data_importer",
+  "TARGET_TABLE": "quote",
+  "IF_EXISTS": "append",
+  "FILE_PATH": "test.csv",
+  "COLUMN_MAPPING": [
+    {
+      "COLUMN_NAME": "source",
+      "FILE_COLUMN_NAME": "source",
+      "MAPPING_TYPE": "CONSTANT",
+      "COLUMN_VALUE": "test-data"
+    },
+    {
+      "COLUMN_NAME": "name",
+      "FILE_COLUMN_NAME": "name",
+      "MAPPING_TYPE": "DIRECT"
+    },
+    {
+      "COLUMN_NAME": "date",
+      "FILE_COLUMN_NAME": "date",
+      "MAPPING_TYPE": "DIRECT"
+    },
+    {
+      "COLUMN_NAME": "open",
+      "FILE_COLUMN_NAME": "open",
+      "MAPPING_TYPE": "DIRECT"
+    },
+    {
+      "COLUMN_NAME": "high",
+      "FILE_COLUMN_NAME": "high",
+      "MAPPING_TYPE": "DIRECT"
+    },
+    {
+      "COLUMN_NAME": "low",
+      "FILE_COLUMN_NAME": "low",
+      "MAPPING_TYPE": "DIRECT"
+    },
+    {
+      "COLUMN_NAME": "close",
+      "FILE_COLUMN_NAME": "close",
+      "MAPPING_TYPE": "DIRECT"
+    },
+    {
+      "COLUMN_NAME": "delta",
+      "MAPPING_TYPE": "EVALUATED",
+      "COLUMN_VALUE": "close - open"
+    },
+    {
+      "COLUMN_NAME": "volume",
+      "FILE_COLUMN_NAME": "volume",
+      "MAPPING_TYPE": "DIRECT",
+    }
+  ]
+}
