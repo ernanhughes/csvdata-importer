@@ -17,27 +17,43 @@ Installation
 Data Importer
 -------------
 
-A configurable file to database table importer. 
+A configurable file to database table importer.
 It can be used to import data from a csv file to a postgres
 or sqlite database.
 
 You build a mapping json file and then use that to create or update tables
 on the database.
 
+.. image:: docs/img/process.jpg
+   :width: 250px
+   :height: 120px
+   :scale: 100% %
+   :alt: the process used to import data
+   :align: center
+
+
 
 Mapping file Example
 -------
 
 .. code-block:: json
-
     {
         "DATABASE_URL": "postgresql://user:pwd@host:5432/db",
         "TARGET_TABLE": "quote",
         "IF_EXISTS": "append",
         "COLUMN_MAPPING": [
+            {
+              "COLUMN_NAME": "source",
+              "FILE_COLUMN_NAME": "source",
+              "MAPPING_TYPE": "CONSTANT",
+              "CONSTANT_VALUE": "test-data"
+            },
+            {
+              "COLUMN_NAME": "quote_value",
+              "FILE_COLUMN_NAME": "close",
+            }
         ]
     }
-
 
 Importing data using the mapping file
 -------------------------------------
@@ -87,7 +103,7 @@ The column mappings
      - The type of mapping we are doing. See below
    * - CONSTANT_VALUE
      - File Import
-     - For use when we are mapping a constant to the table.
+     - For use when we are evaluating or mapping a constant to the table.
 
 
 Different types of mappings
@@ -99,4 +115,5 @@ In this case we read the value form the file and write it directly to the table 
 CONSTANT
 In this case it is a constant value and we are just updating the table with the value we find in the CONSTANT_VALUE mapping.
 
-
+EVALUATION
+Here we are evaluating some code to create the data.

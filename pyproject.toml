@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "data-importer"
 version = "0.1.0"
-description = "Supports importing csv files ot a postgres database"
+description = "Supports importing files to a database using a mapping configuration."
 authors = [{ name = "Ernan", email = "ernan@outlook.com" }]
 license = { file = "LICENSE" }
 readme = "README.rst"
@@ -20,7 +20,8 @@ requires-python = ">=3.11"
 dependencies = [
     "pandas",
     "pytest",
-    "psycopg2"
+    "psycopg2",
+    "SQLAlchemy"
 ]
 
 [tool.setuptools]

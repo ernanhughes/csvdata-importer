@@ -23,6 +23,7 @@ def test_generate_mapping(test_mapping, db_url, db_path, test_csv) -> None:
     process_mapping(test_mapping, test_csv, db_url, target_table_name)
     mapping = json.loads(Mapping.generate_mapping(db_url, target_table_name))
     columns_in_table = get_number_of_columns_in_table(db_path, target_table_name)
+    print_table(db_path, target_table_name)
     assert len(mapping["COLUMN_MAPPING"]) == columns_in_table
 
 
@@ -37,6 +38,14 @@ def process_mapping(mapping_file_path, file_path, database_url, target_table) ->
 def test_load_config(test_mapping) -> None:
     """Test loading a config file"""
     load_config(test_mapping)
+
+
+def test_database_url(test_mapping) -> None:
+    """Test processing a postgres database url"""
+    mapping = Mapping(load_config(test_mapping))
+    alchemy_url = mapping.get_engine_connection_string()
+    assert (alchemy_url == mapping["DATABASE_URL"]
+            .replace("postgresql", "postgresql+psycopg2"))
 
 
 def count_lines_in_file(file_path: str) -> int:
@@ -65,3 +74,16 @@ def get_number_of_columns_in_table(db_path, table_name) -> int:
     row_count = result[0]
     print(row_count)
     return row_count
+
+
+def print_table(db_path, table_name) -> int:
+    query = f'select * from {table_name}'
+    cn = sqlite3.connect(db_path)
+    cursor = cn.cursor()
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    for row in rows:
+        print(row)
+    cursor.close()
+    cn.close()
+

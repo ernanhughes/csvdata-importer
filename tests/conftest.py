@@ -44,7 +44,3 @@ def test_mapping():
 def test_csv():
     return os.path.join(__location__, "test.csv")
 
-
-@pytest.fixture
-def generated_mapping():
-    return os.path.join(__location__, "generated_mapping.json")

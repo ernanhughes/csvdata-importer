@@ -1,69 +1,69 @@
 {
-  "DATABASE_URL": "postgresql://stock_prediction:stock_prediction@localhost:5432/stock_prediction",
-  "TARGET_TABLE": "quote_100",
+  "DATABASE_URL": "postgresql://data_importer:data_importer@localhost:5432/data_importer",
+  "TARGET_TABLE": "quote",
   "IF_EXISTS": "append",
   "FILE_PATH": "test.csv",
   "COLUMN_MAPPING": [
     {
       "COLUMN_NAME": "source",
       "FILE_COLUMN_NAME": "source",
-      "EVAL": "",
       "REQUIRED": "True",
       "MAPPING_TYPE": "CONSTANT",
-      "CONSTANT_VALUE": "test-data"
+      "COLUMN_VALUE": "test-data"
     },
     {
       "COLUMN_NAME": "id",
       "FILE_COLUMN_NAME": "id",
-      "EVAL": "",
+      "MAPPING_TYPE": "DIRECT",
       "REQUIRED": "True"
     },
     {
       "COLUMN_NAME": "name",
       "FILE_COLUMN_NAME": "name_1",
-      "EVAL": "",
+      "MAPPING_TYPE": "DIRECT",
       "REQUIRED": "True"
     },
     {
       "COLUMN_NAME": "date",
       "FILE_COLUMN_NAME": "date",
-      "EVAL": "",
+      "MAPPING_TYPE": "DIRECT",
       "REQUIRED": "True"
     },
     {
       "COLUMN_NAME": "open",
       "FILE_COLUMN_NAME": "open",
-      "EVAL": "",
+      "MAPPING_TYPE": "DIRECT",
       "REQUIRED": "True"
     },
     {
       "COLUMN_NAME": "high",
       "FILE_COLUMN_NAME": "high",
-      "EVAL": "",
+      "MAPPING_TYPE": "DIRECT",
       "REQUIRED": "True"
     },
     {
       "COLUMN_NAME": "low",
       "FILE_COLUMN_NAME": "low",
-      "EVAL": "",
+      "MAPPING_TYPE": "DIRECT",
       "REQUIRED": "True"
     },
     {
       "COLUMN_NAME": "close",
       "FILE_COLUMN_NAME": "close",
-      "EVAL": "",
+      "MAPPING_TYPE": "DIRECT",
       "REQUIRED": "True"
     },
     {
       "COLUMN_NAME": "adj_close",
       "FILE_COLUMN_NAME": "adj_close",
-      "EVAL": "",
+      "MAPPING_TYPE": "EVALUATED",
+      "COLUMN_VALUE": "close + low",
       "REQUIRED": "True"
     },
     {
       "COLUMN_NAME": "volume",
       "FILE_COLUMN_NAME": "volume",
-      "EVAL": "",
+      "MAPPING_TYPE": "DIRECT",
       "REQUIRED": "True"
     }
   ]

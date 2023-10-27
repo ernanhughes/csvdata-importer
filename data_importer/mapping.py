@@ -21,7 +21,7 @@ FILE_COLUMN_NAME = "FILE_COLUMN_NAME"
 CONSTANT = "CONSTANT"
 EVAL = "EVAL"
 MAPPING_TYPE = "MAPPING_TYPE"
-CONSTANT_VALUE = "CONSTANT_VALUE"
+COLUMN_VALUE = "COLUMN_VALUE"
 # What action is take if the target table exists
 IF_EXISTS = "IF_EXISTS"
 
@@ -31,7 +31,7 @@ class ColumnMappingType(Enum):
         DIRECT: Write the file value directly to the table row/column
         EVALUATED: Perform an evaluation on the value we read in the file before updating the database.
                    For example make uppercase etc.
-        CONSTANT: We are writing a constant value the to the target row column.
+        CONSTANT: We are writing a constant value to the target column.
     """
     DIRECT = "DIRECT"
     EVALUATED = "EVALUATED"
@@ -54,7 +54,7 @@ class ColumnMapping(Dict[str, Any]):
     def mapping_type(self): return self[MAPPING_TYPE]
 
     @property
-    def constant_value(self): return self[CONSTANT_VALUE]
+    def column_value(self): return self[COLUMN_VALUE]
 
     def __init__(self, config: Dict[str, Any]) -> None:
         super().__init__(config)
@@ -62,7 +62,7 @@ class ColumnMapping(Dict[str, Any]):
         self[FILE_COLUMN_NAME] = config.get(FILE_COLUMN_NAME, self[COLUMN_NAME])
         self[REQUIRED] = config.get(REQUIRED, "True")
         self[MAPPING_TYPE] = config.get(MAPPING_TYPE, ColumnMappingType.DIRECT.value)
-        self[CONSTANT_VALUE] = config.get(CONSTANT_VALUE, "")
+        self[COLUMN_VALUE] = config.get(COLUMN_VALUE, "")
 
     @staticmethod
     def parse(column) -> Dict[str, Any]:
@@ -72,7 +72,7 @@ class ColumnMapping(Dict[str, Any]):
             EVAL: "",
             MAPPING_TYPE: ColumnMappingType.DIRECT.value,
             REQUIRED: "True" if column['nullable'] else "False",
-            CONSTANT_VALUE: "",
+            COLUMN_VALUE: "",
             "type": str(column['type']),
             "nullable": column['nullable']
         }
