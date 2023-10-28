@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 import sqlalchemy
 from sqlalchemy import inspect
 
-logger = logging.getLogger("data-importer")
+logger = logging.getLogger("csvdata-importer")
 
 FILE_PATH = "FILE_PATH"
 DATABASE_URL = "DATABASE_URL"

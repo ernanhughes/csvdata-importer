@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 
 from .mapping import Mapping, load_mapping, ColumnMappingType
 
-logger = logging.getLogger("data-importer")
+logger = logging.getLogger("csvdata-importer")
 
 
 class Importer:

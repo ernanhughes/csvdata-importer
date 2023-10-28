@@ -11,7 +11,7 @@ Installation
 ------------
 
 
-    $ pip install data-importer
+    $ pip install csvdata-importer
 
 
 CSV Data Importer
