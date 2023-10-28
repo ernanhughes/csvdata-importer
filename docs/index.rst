@@ -4,7 +4,7 @@ Welcome to csvdata-importer's documentation!
 What is csvdata-importer
 ------------------------
 
-Data Importer is a library to help import data typically from a csv file into 
+CSV Data Importer is a library to help import data typically from a csv file into
 database tables. Quite often you have a csv file that just needs to be imported 
 for an application to do further processing.
 

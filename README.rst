@@ -4,7 +4,7 @@ csvdata-importer
 Documentation
 -------------
 
-https://data-importer.readthedocs.io
+https://csvdata-importer.readthedocs.io
 
 
 Installation
