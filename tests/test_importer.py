@@ -3,7 +3,7 @@ import json
 import random
 import sqlite3
 
-from data_importer import Importer, Mapping, load_mapping
+from csvdata_importer import Importer, Mapping, load_mapping
 
 
 def test_process_mapping(test_mapping, db_url, db_path, test_csv) -> None:

@@ -1,8 +1,8 @@
-Welcome to data-importer's documentation!
-=========================================
+Welcome to csvdata-importer's documentation!
+============================================
 
-What is data-importer
----------------------
+What is csvdata-importer
+------------------------
 
 Data Importer is a library to help import data typically from a csv file into 
 database tables. Quite often you have a csv file that just needs to be imported 
@@ -15,11 +15,11 @@ Installation
 ------------
 
 
-    $ pip install data-importer
+    $ pip install csvdata-importer
 
 
-How to use data-importer
-------------------------
+How to use csvdata-importer
+---------------------------
 
 .. code-block:: python
 
@@ -28,9 +28,6 @@ How to use data-importer
     inserted_col_count = Importer(str(mapping)).process()
     print("We inserted %d columns using mapping file %s",
         inserted_col_count, mapping_file_path)
-
-
-
 
 It can be used to import data from a csv file to a postgres
 or sqlite database.
@@ -52,9 +49,10 @@ and the mappings
 
 
 Mapping file Example
--------
+--------------------
 
 .. code-block:: json
+
     {
         "DATABASE_URL": "postgresql://user:pwd@host:5432/db",
         "TARGET_TABLE": "quote",
@@ -152,6 +150,7 @@ Mapping Example 1
 Here I am mapping the name column in the csv file DIRECTLY to the quote_name column in the table.
 
 .. code-block:: json
+
     {
       "COLUMN_NAME": "quote_name",
       "FILE_COLUMN_NAME": "name",
@@ -165,6 +164,7 @@ Mapping Example 2
 Here I am mapping the source column in the table to a constant value. Whatever is in the file will be ignored.
 
 .. code-block:: json
+
     {
       "COLUMN_NAME": "source",
       "FILE_COLUMN_NAME": "source",
@@ -180,6 +180,7 @@ Here I am mapping the delta column to an evaluated value.
 The value in the delta column will be the close value - the open.
 
 .. code-block:: json
+
     {
       "COLUMN_NAME": "delta",
       "MAPPING_TYPE": "EVALUATED",

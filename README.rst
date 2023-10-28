@@ -1,5 +1,5 @@
-data-importer
-=============
+csvdata-importer
+================
 
 Documentation
 -------------
@@ -14,8 +14,8 @@ Installation
     $ pip install data-importer
 
 
-Data Importer
--------------
+CSV Data Importer
+-----------------
 
 A configurable file to database table importer.
 It can be used to import data from a csv file to a postgres
@@ -34,9 +34,10 @@ on the database.
 
 
 Mapping file Example
--------
+--------------------
 
 .. code-block:: json
+
     {
         "DATABASE_URL": "postgresql://user:pwd@host:5432/db",
         "TARGET_TABLE": "quote",

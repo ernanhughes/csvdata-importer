@@ -1,5 +1,5 @@
 {
-  "DATABASE_URL": "postgresql://data_importer:data_importer@localhost:5432/data_importer",
+  "DATABASE_URL": "postgresql://csvdata_importer:csvdata_importer@localhost:5432/csvdata_importer",
   "TARGET_TABLE": "quote",
   "IF_EXISTS": "append",
   "FILE_PATH": "test.csv",

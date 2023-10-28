@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "data-importer"
+name = "csvddata-importer"
 version = "0.1.0"
 description = "Supports importing files to a database using a mapping configuration."
 authors = [{ name = "Ernan", email = "ernan@outlook.com" }]
@@ -25,13 +25,13 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["data_importer"]
+packages = ["csvdata_importer"]
 
 
 [tool.setuptools.package-data]
 sndfileio = ["py.typed"]
 
 [project.urls]
-"Homepage" = "https://github.com/ernan/data-importer"
+"Homepage" = "https://github.com/ernan/csvdata-importer"
 
 

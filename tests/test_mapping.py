@@ -1,7 +1,7 @@
 """Test the mapping functionality. Uses a sqlite database in place of postgres."""
 import json
 
-from data_importer import Mapping, load_mapping
+from csvdata_importer import Mapping, load_mapping
 
 
 def test_load_mapping_as_json_file(test_mapping) -> None:
